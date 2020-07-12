@@ -76,7 +76,6 @@ class message_encryption:
         base64_nonce = self.base64_encode(nonce)
         encryted_data = 'CIPHER_TEXT:' + str(base64_cyphertext) + ', NONCE:' + str(base64_nonce)
         self.conn.sendall(encryted_data.encode())
-        print('message has been send')
 
     def check_integrity(self, message, hash):
         if hash == self.calculate_hash(message).hexdigest():

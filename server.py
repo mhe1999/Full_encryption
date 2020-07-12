@@ -11,8 +11,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     with conn:
         print('Connected by', addr)
         server = message_encryption(conn)
-        server.send_initial_params()
-        server.send_public_key()
+        server.send_initial_params() # DiffieHellman key exchange
+        server.send_public_key() # DiffieHellman key exchange
         while True:
             data = conn.recv(1024)
             if not data:
@@ -20,7 +20,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             data = data.decode()
 
             if data.startswith('DH_PUBLIC_KEY'):
-                server.Receive_public_key(data)
+                server.Receive_public_key(data) # DiffieHellman key exchange
                 break
 
         while True:

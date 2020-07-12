@@ -14,11 +14,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         data = data.decode()
 
         if data.startswith('DH_INITIAL_PARAMS'):
-            client.Receive_inital_params(data)
-            client.send_public_key()
+            client.Receive_inital_params(data) # DiffieHellman key exchange
+            client.send_public_key() # DiffieHellman key exchange
 
         if data.startswith('DH_PUBLIC_KEY'):
-            client.Receive_public_key(data)
+            client.Receive_public_key(data) # DiffieHellman key exchange
             break
 
     while True:
